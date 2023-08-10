@@ -7,12 +7,14 @@ import org.springframework.data.redis.core.index.Indexed;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @RedisHash("Region")
 @Getter
 @Setter
+@Builder
 public class Region implements Serializable {
 
 	@Id

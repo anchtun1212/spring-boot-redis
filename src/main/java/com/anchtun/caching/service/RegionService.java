@@ -8,6 +8,8 @@ public interface RegionService {
 
 	List<Region> findAll();
 
-	void saveAllInRedis();
+	void saveAll();
+
+	Region getById(Long id);
 
 }

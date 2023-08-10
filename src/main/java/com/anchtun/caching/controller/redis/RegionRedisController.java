@@ -1,8 +1,9 @@
-package com.anchtun.caching.controller;
+package com.anchtun.caching.controller.redis;
 
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +15,8 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/region")
-public class RegionController {
+@RequestMapping("/redis/region")
+public class RegionRedisController {
 
 	private final RegionService regionService;
 
@@ -24,9 +25,14 @@ public class RegionController {
 		return regionService.findAll();
 	}
 
-	@PostMapping("/saveAllInRedis")
+	@PostMapping("/saveAll")
 	public void saveAll() {
-		regionService.saveAllInRedis();
+		regionService.saveAll();
+	}
+	
+	@GetMapping("/{id}")
+	public Region getById(@PathVariable Long id) {
+		return regionService.getById(id);
 	}
 
 }

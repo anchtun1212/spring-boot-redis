@@ -6,6 +6,7 @@ import java.util.Objects;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import com.anchtun.caching.mapper.RegionMapper;
 import com.anchtun.caching.model.entity.RegionEntity;
 import com.anchtun.caching.model.redis.Region;
 import com.anchtun.caching.repository.RegionRepository;
@@ -19,7 +20,6 @@ import lombok.AllArgsConstructor;
 public class RegionServiceImpl implements RegionService {
 
 	public static final String HASH_KEY = "Region";
-
 	private final RedisTemplate template;
 	private final RegionRepository regionRepository;
 
@@ -29,14 +29,19 @@ public class RegionServiceImpl implements RegionService {
 	}
 
 	@Override
-	public void saveAllInRedis() {
+	public void saveAll() {
 		List<RegionEntity> listRegion = regionRepository.findAll();
 		if (Objects.nonNull(listRegion) && !listRegion.isEmpty()) {
 			listRegion.forEach(r -> {
-				template.opsForHash().put(HASH_KEY, r.getId(), r);
+				Region region = RegionMapper.mapFromRegionEntity(r);
+				template.opsForHash().put(HASH_KEY, region.getId(), region);
 			});
 		}
+	}
 
+	@Override
+	public Region getById(Long id) {
+		return (Region) template.opsForHash().get(HASH_KEY, id);
 	}
 
 //	 public Product save(Product product){
