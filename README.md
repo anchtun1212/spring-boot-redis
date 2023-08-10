@@ -1,2 +1,2 @@
 # spring-boot-redis
-use Redis with Spring Boot
+Use Redis with Spring Boot
