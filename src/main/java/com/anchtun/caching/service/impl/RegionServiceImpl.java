@@ -44,9 +44,15 @@ public class RegionServiceImpl implements RegionService {
 		return (Region) template.opsForHash().get(HASH_KEY, id);
 	}
 
-//	 public Product save(Product product){
-//	        template.opsForHash().put(HASH_KEY,product.getId(),product);
-//	        return product;
-//	    }
+	@Override
+	public Region saveInRedis(Region region) {
+		template.opsForHash().put(HASH_KEY, region.getId(), region);
+		return region;
+	}
+
+	@Override
+	public void deleteInRedis(Long id) {
+		template.opsForHash().delete(HASH_KEY,id);
+	}
 
 }

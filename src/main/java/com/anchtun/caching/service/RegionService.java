@@ -12,4 +12,8 @@ public interface RegionService {
 
 	Region getById(Long id);
 
+	Region saveInRedis(Region region);
+
+	void deleteInRedis(Long id);
+
 }

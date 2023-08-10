@@ -2,9 +2,11 @@ package com.anchtun.caching.controller.redis;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,10 +31,21 @@ public class RegionRedisController {
 	public void saveAll() {
 		regionService.saveAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	public Region getById(@PathVariable Long id) {
 		return regionService.getById(id);
+	}
+
+	// save new && update
+	@PostMapping("/save")
+	public Region save(@RequestBody Region region) {
+		return regionService.saveInRedis(region);
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public void delete(@PathVariable Long id) {
+		regionService.deleteInRedis(id);
 	}
 
 }
