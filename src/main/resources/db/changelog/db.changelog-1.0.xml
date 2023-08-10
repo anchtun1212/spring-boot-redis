@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.0.xsd">
+		
+	<changeSet id="spring-redis-1" author="anchtun1212">
+		<sql>
+			create table region(
+			    id serial4 not null primary key,
+				name_ar varchar(50) not null,
+				name_en varchar(50) not null
+			);
+		</sql>
+		<rollback>
+			drop table region;
+		</rollback>
+	</changeSet>
+		<changeSet id="spring-redis-2" author="anchtun1212">
+		<sql>
+			insert into region (id, name_ar, name_en) values (1, 'الرياض', 'Riyadh');
+			insert into region (id, name_ar, name_en) values (2, 'مكة المكرمة', 'Mecca');
+			insert into region (id, name_ar, name_en) values (3, 'المدينة المنورة', 'Medina');
+			insert into region (id, name_ar, name_en) values (4, 'القصيم', 'Al-Qassim');
+			insert into region (id, name_ar, name_en) values (5, 'الشرقية', 'Eastern');
+			insert into region (id, name_ar, name_en) values (6, 'عسير', 'Asir');
+			insert into region (id, name_ar, name_en) values (7, 'تبوك', 'Tabuk');
+			insert into region (id, name_ar, name_en) values (8, 'حائل', 'Hail');
+			insert into region (id, name_ar, name_en) values (9, 'الحدود الشمالية', 'Northern Borders');
+			insert into region (id, name_ar, name_en) values (10, 'جازان', 'Jazan');
+			insert into region (id, name_ar, name_en) values (11, 'نجران', 'Najran');
+			insert into region (id, name_ar, name_en) values (12, 'الباحة', 'Al-Bahah');
+			insert into region (id, name_ar, name_en) values (13, 'الجوف', 'Al-Jawf ');
+		</sql>
+	</changeSet>
+</databaseChangeLog>
