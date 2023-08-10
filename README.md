@@ -1,7 +1,8 @@
 # spring-boot-redis
 Use Redis with Spring Boot
 
-# steps
-`docker pull redis`
+# Redis: steps
+By default there is no password
 
-start a redis instance: `docker run --name some-redis -d redis`
+start a redis instance: `sudo docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:latest`
+
